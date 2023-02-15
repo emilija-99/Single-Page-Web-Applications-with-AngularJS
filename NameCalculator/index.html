@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./angular.min.js"></script>
+    <script src="./app.js" ></script>
+    <meta charset="utf-8">
+    <link rel="icon" href="data:;base64,=">
+    <title>Name Caluculator</title>
+  </head>
+  <body ng-app = "NameCaluclator">
+    <h1>Name Caluculator</h1>
+    <div ng-controller = "NameCaluclatorController">
+      <div>
+        Your name: <input type="text" ng-model="name" ng-keyup = 'displayNumeric();'> {{name}}
+      </div>
+      <div> Total numeric value of person's name is: {{totalValue}} </div>
+    </div>
+  </body>
+</html>

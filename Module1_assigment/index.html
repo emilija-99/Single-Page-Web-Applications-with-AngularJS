@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src = "angular.min.js">
+
+    </script>
+    <script type="text/javascript" src = "app.js">
+
+    </script>
+      <link rel="icon" href="data:,">
+    <title></title>
+  </head>
+  <body ng-app = "LunchCheck">
+
+    <h1></h1>
+    <div ng-controller = "LunchCheckController">
+
+      <input ng-model = "items" type = "text">
+      {{items}}
+      {{countItems();}}
+        <div>
+          <button type="button" ng-click = "message();">Check If Too Much</button>
+          {{display}}
+
+        </div>
+      </div>
+  </body>
+</html>

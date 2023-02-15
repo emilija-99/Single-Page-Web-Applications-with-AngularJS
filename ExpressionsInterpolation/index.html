@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src = "angular.min.js">
+
+    </script>
+    <script type="text/javascript" src = "app.js">
+
+    </script>
+    <title></title>
+  </head>
+  <body ng-app = "MsgApp">
+
+    <h1>Expressions and Interpolations</h1>
+    <div ng-controller = "MsgController">
+      {{name}} has a message for you:
+      {{sayMessage();}}
+        <div>
+          <button type="button" ng-click = "FeedEmilija()">Feed Emilija</button>
+          <br>
+          <img ng-src="./images/donut_{{stateOfBeign}}.jpg">
+        </div>
+      </div>
+  </body>
+</html>
