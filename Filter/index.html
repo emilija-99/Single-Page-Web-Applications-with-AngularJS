@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src = "angular.min.js">
+
+    </script>
+    <script type="text/javascript" src = "app.js">
+
+    </script>
+    <title></title>
+    <link rel="icon" href="data:,">
+  </head>
+  <body ng-app = "MsgApp">
+    <h1>Filter</h1>
+    <div ng-controller = "MsgController">
+      {{name}} has a message for you: <br>
+      Original : {{sayMessage();}}<br>
+      Loves : {{sayLovesMessage();}}<br>
+      Truth : {{sayLovesMessage() | truth : 'healthy' : 'cookie'}} <br>
+      Big truth : {{sayLovesMessage() | truth : 'healthy' : 'cookie' | uppercase}} <br>
+        <div>
+          <button type="button" ng-click = "FeedEmilija();">Feed Emilija</button>
+          Cost : {{cookieCost | currency : "#blah" : 4}}
+          <br>
+          <img ng-src="./images/donut_{{stateOfBeign}}.jpg">
+        </div>
+      </div>
+  </body>
+</html>
