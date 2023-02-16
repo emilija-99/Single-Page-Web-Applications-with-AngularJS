@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="angular.min.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+    <title>Digest Cycle</title>
+    <link rel="icon" href="data:,">
+  </head>
+  <body ng-app = "BindingApp">
+    <h1>1-way, 2-way and 1-time Bindin</h1>
+    <div ng-controller = "BindingController">
+      <button ng-click = "showNumberOfWatchers();">Log</button>
+      <button ng-click = "setFullName()">Set Full Name</button><br>
+
+      Full name is: {{::fullName}}<br>
+
+      <button ng-click = "logFirstName()">Log First Name</button>
+      <button ng-click = "logFullName()">Log Full Name</button>
+
+      <div>
+        <input type="text" ng-model = "firstName">
+      </div>
+      </div>
+
+  </body>
+  </html>
