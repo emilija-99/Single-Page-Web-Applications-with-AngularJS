@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script src="./angular.min.js"></script>
+    <script src="./app.js" ></script>
+    <meta charset="utf-8">
+    <link rel="icon" href="data:;base64,=">
+  </head>
+  <body ng-app = "MenuCategoriesApp">
+    <h1>Using HTTP service</h1>
+    <div ng-controller = "MenuCategoriesController as menu">
+      <ul>
+        <li ng-repeat = "category in menu.categories">
+        <a href="" ng-click = "menu.logMenuItems(category.short_name);">{{ category.short_name}}</a> - {{category.name}}
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
