@@ -17,10 +17,13 @@ function ShoppingListDirective(){
         myTitle:'@title',
         badRemove: '=',
         onRemove: '&' // reference binding
+
       },
       controller: ShoppingListDirectiveController,
       controllerAs: 'list',
-      bindToController: true
+      bindToController: true,
+      link : ShoppingListDirectiveLink,
+      transclude: true
   };
   return ddo;
 }
@@ -36,8 +39,45 @@ function ShoppingListDirectiveController(){
     }
     return false;
   };
-
 }
+
+function ShoppingListDirectiveLink(scope, elemeny, attrs, controller){
+  console.log('Link scope is: ', scope);
+  console.log('Controller instace is : ', controller);
+  console.log('Element is: ', element);
+
+  scope.$watch('list.cookiesInList()', function(newValue, oldValue){
+    console.log("Old value: ", oldValue);
+    console.log("New value: ", newValue);
+
+    if(newValue === true){
+      displayCookieWarning();
+    }else{
+      removeCookieWarning();
+    }
+  });
+
+  function displayCookieWarning(){
+    // using angular jqLite
+    // var warningElem = element.find('div');
+    // console.log(warningElem);
+    // warningElem.css('display','block');
+
+    // jquery included before angular
+    var warningElem = element.find('div.error');
+    warningElem.slideDown(900);
+  }
+
+  function removeCookieWarning(){
+    // var warningElem = element.find('div');
+    // warningElem.css('display','none');
+    var warningElem = element.find('div.error');
+    warningElem.slideUp(900);
+  }
+}
+
+
+
 // function ShoppingList(){
 //   var ddo = {
 //     templateUrl : 'shoppingList.html',

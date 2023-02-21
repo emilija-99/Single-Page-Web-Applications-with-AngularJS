@@ -2,10 +2,12 @@
 <html ng-app='ShoppingListDirectiveApp'>
   <head>
     <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" ></script>
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
     <link rel="icon" href="data:;base64,=">
     <title>Directives with 'restrict'</title>
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body>
     <h1>Directives with 'restrict'</h1>
@@ -18,11 +20,12 @@
       <button ng-click="list.addItem();">Add Item</button>
       <span>{{list.lastRemoved}}</span>
       <shopping-list
+      id = "list"
       items="list.items"
       title="{{list.title}}"
-      bad-remove = "list.removeItem"
       on-remove = "list.removeItem(index)"></shopping-list>
-
+      <!-- bad-remove = "list.removeItem" -->
+      <spna class = 'warning'>Wrning! {{list.warning}}</span>
       <!-- <shopping-list my-list = "list1" title="{{list1.title}}"></shopping-list> -->
       <!-- <ol>
         <li ng-repeat="item in list.items">

@@ -1,0 +1,14 @@
+.error{
+  color: red;
+  font-weight: bold;
+  display: none;
+}
+#list{
+  float:left;
+}
+.title{
+  background-color: #383838;
+}
+.warning{
+  font-style: italic
+}
