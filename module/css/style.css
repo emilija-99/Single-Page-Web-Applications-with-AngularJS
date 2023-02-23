@@ -10,3 +10,11 @@
 .warning{
   font-style: italic
 }
+body{
+  font-size: 1.2em;
+}
+.loading-icon{
+  position: absolute;
+  left: 50%;
+  top:10px;
+}

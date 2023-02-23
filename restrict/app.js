@@ -1,32 +1,93 @@
 (function () {
 'use strict';
 
-angular.module('ShoppingListDirectiveApp', [])
+angular.module('ShoppingListComponentApp', [])
 .controller('ShoppingListController1', ShoppingListController1)
 .controller('ShoppingListController2', ShoppingListController2)
 .factory('ShoppingListFactory', ShoppingListFactory)
 .controller('ShoppingListDirectiveController', ShoppingListDirectiveController)
-.directive('shoppingList', ShoppingListDirective);
+.component('shoppingList', {
+  templateUrl: 'shoppingList.html',
+  controller: ShoppingListControllerController,
+  bindings:{
+    items: '<',
+    myTitle: '@title',
+    onRemove: '&'
+  }
+});
+ShoppingListControllerController.$inject = ['$scope','$element'];
+function ShoppingListControllerController($scope, $element){
+  var $ctrl = this;
+  var totalItem;
 
-
-function ShoppingListDirective(){
-  var ddo = {
-      templateUrl: 'shoppingList.html',
-      scope:{
-        items:'<',
-        myTitle:'@title',
-        badRemove: '=',
-        onRemove: '&' // reference binding
-
-      },
-      controller: ShoppingListDirectiveController,
-      controllerAs: 'list',
-      bindToController: true,
-      link : ShoppingListDirectiveLink,
-      transclude: true
+  $ctrl.cookiesInList = function(){
+    for(var i = 0; i < $ctrl.items.length; i++){
+      var name = $ctrl.items[i].name;
+      if(name.toLowerCase().indexOf('cookie') !== -1){
+        return true;
+      }
+    }
+      return false;
   };
-  return ddo;
+
+  $ctrl.remove = function(myIndex){
+    $ctrl.onRemove({key : myIndex });
+  };
+
+  $ctrl.$onInit = function(){
+    console.log("We are int he $onInit");
+    totalItem = 0;
+  }
+
+  $ctrl.$onChange = function(changeObj){
+    console.log("Change the object", changeObj);
+  }
+
+  $ctrl.$doCheck = function(){
+    if($ctrl.items.length !== totalItem){
+      totalItem = $ctrl.items.length;
+      if($ctrl.cookiesInList()){
+        var warningElem = $element.find('div.error');
+        warningElem.slideDown(900);
+      }else{
+        var warningElem = $element.find('div.error');
+        warningElem.slideUp(900);
+      }
+    }
+  };
 }
+
+  // $ctrl.$postLink = function(){
+  //   $scope.$watch('$ctrl.cookiesInList();', function(newValue, oldValue){
+  //     console.log($element);
+  //     if(newValue === true){
+  //       var warningElem = $element.find('div.error');
+  //       warningElem.slideDown(900);
+  //     }else{
+  //       var warningElem = $element.find('div.error');
+  //       warningElem.slideUp(900); // make it disappear
+  //     }
+  //   });
+  // };
+// }
+// function ShoppingListDirective(){
+//   var ddo = {
+//       templateUrl: 'shoppingList.html',
+//       scope:{
+//         items:'<',
+//         myTitle:'@title',
+//         badRemove: '=',
+//         onRemove: '&' // reference binding
+//
+//       },
+//       controller: ShoppingListDirectiveController,
+//       controllerAs: 'list',
+//       bindToController: true,
+//       link : ShoppingListDirectiveLink,
+//       transclude: true
+//   };
+//   return ddo;
+// }
 
 function ShoppingListDirectiveController(){
   var list = this; // same sa controllerAs
@@ -120,6 +181,7 @@ function ShoppingListController1(ShoppingListFactory) {
   var shoppingList = ShoppingListFactory();
 
   list.items = shoppingList.getItems();
+  console.log("ShoppingListController1:: ",list.items);
   var origTitle = "Shopping List #1 ";
   list.title = origTitle + "(" +list.items.length +") items";
 
@@ -133,9 +195,8 @@ function ShoppingListController1(ShoppingListFactory) {
     list.title = origTitle + "(" +list.items.length+") items";
   };
 
-  list.removeItem = function (itemIndex) {
+  list.removeItem = function(itemIndex) {
     console.log("'this' is : ", this);
-    this.lastRemoved = "Last item removed was "+this.items[itemIndex].name;
     shoppingList.removeItem(itemIndex);
     list.title = origTitle + "(" +list.items.length+") items";
 
