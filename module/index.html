@@ -2,40 +2,30 @@
 <html ng-app='ShoppingList'>
   <head>
     <meta charset="utf-8">
+
+    <script src = "./lib/angular.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.30/angular-ui-router.min.js"></script>
+    <script src = "./app_router.js"></script>
+
+    <script src = "./src/shoppinglist/main-shoppinglist.controller.js"></script>
+    <script src = "./src/shoppinglist/shoppinglist.component.js"></script>
+    <script src = "./src/shoppinglist/shoppinglist.module.js"></script>
+    <script src = "./src/shoppinglist/shoppinglist.service.js"></script>
+
     <link rel="icon" href="data:;base64,=">
-    <title>Modules</title>
-    <link rel="stylesheet" href="./style.css">
+
+    <title>Routing</title>
+
   </head>
   <body>
-    <h1>Shopping List with Events</h1>
+    <h1>No Cookie Shopping List</h1>
 
-    <!-- LIST #1 - unlimited items -->
-    <div id="list1" ng-controller='ShoppingListController as list'>
+    <h1>Welcome to Premade No Cookie Shopping List</h1>
 
-      <input type="text" ng-model="list.itemName" placeholder="item name">
-      <input type="text" ng-model="list.itemQuantity" placeholder="quantity">
-      <button ng-click="list.addItem();">Add Item</button>
-      <span>{{list.lastRemoved}}</span>
-      <shopping-list
-      items="list.items"
-      title="{{list.title}}"
-      on-remove = "list.removeItem(index)"></shopping-list>
+    <ui-view></ui-view>
 
-    </div>
 
-    <loading-spinner>
-    </loading-spinner>
 
-    <script src = "Single-Page-Web-Applications-with-AngularJS\module\lib\jquery-3.1.0.min.js"></script>
-    <script src = "Single-Page-Web-Applications-with-AngularJS\module\lib\angular.min.js"></script>
-
-      <script src="src/shoppinglist/shoppinglist.component.js"></script>
-      <script src="src/shoppinglist/shoppinglist.controller.js"></script>
-      <script src="src/shoppinglist/shoppinglist.factory.js"></script>
-      <script src="src/shoppinglist/weightlossfilter.service.js"></script>
-
-      <!-- 'Spinner' module artifacts -->
-      <script src="src/spinner/loadingspinner.component.js"></script>
 
   </body>
 </html>
